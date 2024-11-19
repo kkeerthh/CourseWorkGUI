@@ -16,10 +16,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            AnchorPane root = new FXMLLoader().load(new FileInputStream("D:\\JavaProjects\\CourseWork_Java\\CourseWork\\Graphic1.fxml"));
-            Scene scene = new Scene(root, 800, 663);
+            AnchorPane root = new FXMLLoader().load(new FileInputStream("D:\\JavaProjects\\CourseWork_Java\\CourseWorkGUI_KiraHovorukha\\FunctionPlotter.fxml"));
+            Scene scene = new Scene(root, 800, 655);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Course work");
+            primaryStage.setTitle("Курсова робота");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

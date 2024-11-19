@@ -17,7 +17,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 import javafx.util.converter.DoubleStringConverter;
-import data.PointData;
+import pointdata.EquationData;
 
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXBException;
@@ -32,35 +32,35 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     private XML xml = new XML();
-    private ObservableList<PointData.ArrayFX.Point> observableListFX;
-    private ObservableList<PointData.ArrayGX.Point> observableListGX;
+    private ObservableList<EquationData.FunctionFx.Point> observableListFx;
+    private ObservableList<EquationData.FunctionGx.Point> observableListGx;
 
     @FXML
-    private TableView<PointData.ArrayFX.Point> tableFX;
+    private TableView<EquationData.FunctionFx.Point> tableFx;
 
     @FXML
-    private TableColumn<PointData.ArrayFX.Point, Double> FXColumnX;
+    private TableColumn<EquationData.FunctionFx.Point, Double> FxColumnX;
 
     @FXML
-    private TableColumn<PointData.ArrayFX.Point, Double> FXColumnY;
+    private TableColumn<EquationData.FunctionFx.Point, Double> FxColumnY;
 
     @FXML
-    private TableView<PointData.ArrayGX.Point> tableGX;
+    private TableView<EquationData.FunctionGx.Point> tableGx;
 
     @FXML
-    private TableColumn<PointData.ArrayGX.Point, Double> GXColumnX;
+    private TableColumn<EquationData.FunctionGx.Point, Double> GxColumnX;
 
     @FXML
-    private TableColumn<PointData.ArrayGX.Point, Double> GXColumnY;
+    private TableColumn<EquationData.FunctionGx.Point, Double> GxColumnY;
 
     @FXML
-    private TextField eps;
+    private TextField tolerance;
 
     @FXML
-    private TextField a;
+    private TextField lowerBound;
 
     @FXML
-    private TextField b;
+    private TextField upperBound;
 
     @FXML
     private LineChart<Number, Number> Chart;
@@ -74,51 +74,51 @@ public class MainController implements Initializable {
     }
 
     private boolean checker() {
-        List<PointData.ArrayFX.Point> listFX = new ArrayList<>();
-        ObservableList<PointData.ArrayFX.Point> tempFX = FXCollections.observableList(listFX);
-        for (PointData.ArrayFX.Point p : observableListFX) {
-            for (int i = 0; i < tempFX.size(); i++) {
-                if (tempFX.get(i).getX() == p.getX() && tempFX.get(i).getY() == p.getY()) {
+        List<EquationData.FunctionFx.Point> listFx = new ArrayList<>();
+        ObservableList<EquationData.FunctionFx.Point> tempFx = FXCollections.observableList(listFx);
+        for (EquationData.FunctionFx.Point p : observableListFx) {
+            for (int i = 0; i < tempFx.size(); i++) {
+                if (tempFx.get(i).getX() == p.getX() && tempFx.get(i).getY() == p.getY()) {
                     Alert a = new Alert(Alert.AlertType.ERROR);
-                    a.setTitle("Error!");
-                    a.setHeaderText("Error! The point already exists in the table!");
+                    a.setTitle("Помилка!");
+                    a.setHeaderText("Помилка! Точка вже існує в таблиці!");
                     a.showAndWait();
-                    observableListFX.remove(i);
-                    xml.delByIndexFX(i);
+                    observableListFx.remove(i);
+                    xml.delByIndexFx(i);
                     return false;
                 }
             }
-            tempFX.add(p);
+            tempFx.add(p);
         }
-        List<PointData.ArrayGX.Point> listGX = new ArrayList<>();
-        ObservableList<PointData.ArrayGX.Point> tempGX = FXCollections.observableList(listGX);
-        for (PointData.ArrayGX.Point p : observableListGX) {
-            for (int i = 0; i < tempGX.size(); i++) {
-                if (tempGX.get(i).getX() == p.getX() && tempGX.get(i).getY() == p.getY()) {
+        List<EquationData.FunctionGx.Point> listGx = new ArrayList<>();
+        ObservableList<EquationData.FunctionGx.Point> tempGx = FXCollections.observableList(listGx);
+        for (EquationData.FunctionGx.Point p : observableListGx) {
+            for (int i = 0; i < tempGx.size(); i++) {
+                if (tempGx.get(i).getX() == p.getX() && tempGx.get(i).getY() == p.getY()) {
                     Alert a = new Alert(Alert.AlertType.ERROR);
-                    a.setTitle("Error!");
-                    a.setHeaderText("Error! The point already exists in the table!");
+                    a.setTitle("Помилка!");
+                    a.setHeaderText("Помилка! Точка вже існує в таблиці!");
                     a.showAndWait();
-                    observableListGX.remove(i);
-                    xml.delByIndexGX(i);
+                    observableListGx.remove(i);
+                    xml.delByIndexGx(i);
                     return false;
                 }
             }
-            tempGX.add(p);
+            tempGx.add(p);
         }
         return true;
     }
 
     @FXML
-    void doAddFX(ActionEvent actionEvent) {
-        xml.addPFX(0, 0);
-        XMLupdateTableFX();
+    void doAddFx(ActionEvent actionEvent) {
+        xml.addPFx(0, 0);
+        XMLupdateTableFx();
     }
 
     @FXML
-    void doAddGX(ActionEvent actionEvent) {
-        xml.addPGX(0, 0);
-        XMLupdateTableGX();
+    void doAddGx(ActionEvent actionEvent) {
+        xml.addPGx(0, 0);
+        XMLupdateTableGx();
     }
 
     @FXML
@@ -132,30 +132,30 @@ public class MainController implements Initializable {
             Chart.setLegendVisible(false);
             XYChart.Series<Number, Number> seriesF = new XYChart.Series<>();
             XYChart.Series<Number, Number> seriesG = new XYChart.Series<>();
-            double A = Double.parseDouble(a.getText());
-            double B = Double.parseDouble(b.getText());
-            double E = Double.parseDouble(eps.getText());
-            xml.setA(A);
-            xml.setB(B);
-            xml.setEps(E);
+            double LowerBound = Double.parseDouble(lowerBound.getText());
+            double UpperBound = Double.parseDouble(upperBound.getText());
+            double Tolerance = Double.parseDouble(tolerance.getText());
+            xml.setLowerBound(LowerBound);
+            xml.setUpperBound(UpperBound);
+            xml.setTolerance(Tolerance);
             try {
-                if (xml.getSizeFX() < 2 || xml.getSizeGX() < 2)
+                if (xml.getSizeFx() < 2 || xml.getSizeGx() < 2)
                     throw new SecurityException();
                 if (checker() == false)
                     doBuild();
-                double h = (B - A) / 100;
-                if (A >= B)
+                double h = (UpperBound - LowerBound) / 100;
+                if (LowerBound >= UpperBound)
                     throw new Error();
                 double temp;
-                for (double x = A; x < B; x += h) {
-                    for (int i = 0; i < xml.getSizeFX(); i++) {
-                        temp = Polinom.LPfx(x, xml.getArrFX());
+                for (double x = LowerBound; x < UpperBound; x += h) {
+                    for (int i = 0; i < xml.getSizeFx(); i++) {
+                        temp = Interpolation.LagrangePolynomialFx(x, xml.getFuncFx());
                         if (Double.isNaN(temp))
                             throw new ArithmeticException();
                         seriesF.getData().add(new XYChart.Data<>(x, temp));
                     }
-                    for (int i = 0; i < xml.getSizeGX(); i++) {
-                        temp = Polinom.LPgx(x, xml.getArrGX());
+                    for (int i = 0; i < xml.getSizeGx(); i++) {
+                        temp = Interpolation.LagrangePolynomialGx(x, xml.getFuncGx());
                         if (Double.isNaN(temp))
                             throw new ArithmeticException();
                         seriesG.getData().add(new XYChart.Data<>(x, temp));
@@ -163,8 +163,8 @@ public class MainController implements Initializable {
                 }
             } catch (Error e) {
                 Alert a = new Alert(Alert.AlertType.ERROR);
-                a.setTitle("Error!");
-                a.setHeaderText("Error!Incorrect interval");
+                a.setTitle("Помилка!");
+                a.setHeaderText("Помилка! Неправильний інтервал");
                 seriesF.getData().clear();
                 seriesG.getData().clear();
                 Chart.getData().clear();
@@ -172,8 +172,8 @@ public class MainController implements Initializable {
                 a.showAndWait();
             } catch (SecurityException e) {
                 Alert a = new Alert(Alert.AlertType.ERROR);
-                a.setTitle("Error!");
-                a.setHeaderText("Error! Not enough points (need >= 2)");
+                a.setTitle("Помилка!");
+                a.setHeaderText("Помилка! Не вистачає точок (потрібно більше(або рівно) дві точки)");
                 seriesF.getData().clear();
                 seriesG.getData().clear();
                 Chart.getData().clear();
@@ -182,17 +182,17 @@ public class MainController implements Initializable {
             }
             ROOT.clear();
             Chart.getData().addAll(seriesF, seriesG);
-            for (double x = A; x < B; x += 0.1) {
-                String temp = Dotichiy.dotichiy(x, x + 0.1, Double.parseDouble(eps.getText()), xml.getArrFX(), xml.getArrGX());
+            for (double x = LowerBound; x < UpperBound; x += 0.1) {
+                String temp = Dichotomy.dichotomyMethod(x, x + 0.1, Double.parseDouble(tolerance.getText()), xml.getFuncFx(), xml.getFuncGx());
                 if (!temp.isEmpty())
                     count++;
             }
-            if (count == Math.abs((B - A) * 10) || count - 1 == Math.abs((B - A) * 10)) {
-                ROOT.setText("Infinite number of roots!");
-                ll.add("Infinite number of roots!");
+            if (count == Math.abs((UpperBound - LowerBound) * 10) || count - 1 == Math.abs((UpperBound - LowerBound) * 10)) {
+                ROOT.setText("Нескінченна кількість коренів!");
+                ll.add("Нескінченна кількість коренів!");
             } else {
-                for (double x = A; x < B; x += 0.1) {
-                    String temp = Dotichiy.dotichiy(x, x + 0.1, Double.parseDouble(eps.getText()), xml.getArrFX(), xml.getArrGX());
+                for (double x = LowerBound; x < UpperBound; x += 0.1) {
+                    String temp = Dichotomy.dichotomyMethod(x, x + 0.1, Double.parseDouble(tolerance.getText()), xml.getFuncFx(), xml.getFuncGx());
                     if (!temp.isEmpty()) {
                         ROOT.appendText(temp + "\n");
                         ll.add(temp);
@@ -200,21 +200,21 @@ public class MainController implements Initializable {
                     }
                 }
                 if (ROOT.getText().isEmpty()) {
-                    ROOT.setText("There aren't roots in this interval!");
-                    ll.add("There aren't roots in this interval!");
+                    ROOT.setText("У цьому інтервалі немає коренів!");
+                    ll.add("У цьому інтервалі немає коренів!");
                 }
             }
         } catch (ArithmeticException e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setTitle("Error!");
-            a.setHeaderText("Error! The graph with such points doesn't exist! Check points!");
+            a.setTitle("Помилка!");
+            a.setHeaderText("Помилка! Графіка з такими точками не існує! Потрібно перевірити точки!");
             Chart.getData().clear();
             ROOT.clear();
             a.showAndWait();
         } catch (Exception e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setTitle("Error!");
-            a.setHeaderText("Error!Incorrect data");
+            a.setTitle("Помилка!");
+            a.setHeaderText("Помилка! Неправильні дані");
             Chart.getData().clear();
             ROOT.clear();
             a.showAndWait();
@@ -222,113 +222,113 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void doRemoveFX(ActionEvent event) {
-        int t = tableFX.getSelectionModel().getFocusedIndex();
-        if (observableListFX == null)
+    void doRemoveFx(ActionEvent event) {
+        int t = tableFx.getSelectionModel().getFocusedIndex();
+        if (observableListFx == null)
             return;
-        if (observableListFX.size() > 0) {
-            observableListFX.remove(t);
-            xml.delByIndexFX(t);
+        if (observableListFx.size() > 0) {
+            observableListFx.remove(t);
+            xml.delByIndexFx(t);
         }
-        if (observableListFX.size() <= 0)
-            observableListFX = null;
+        if (observableListFx.size() <= 0)
+            observableListFx = null;
     }
 
     @FXML
-    void doRemoveGX(ActionEvent event) {
-        int t = tableGX.getSelectionModel().getFocusedIndex();
-        if (observableListGX == null)
+    void doRemoveGx(ActionEvent event) {
+        int t = tableGx.getSelectionModel().getFocusedIndex();
+        if (observableListGx == null)
             return;
-        if (observableListGX.size() > 0) {
-            observableListGX.remove(t);
-            xml.delByIndexGX(t);
+        if (observableListGx.size() > 0) {
+            observableListGx.remove(t);
+            xml.delByIndexGx(t);
         }
-        if (observableListGX.size() <= 0)
-            observableListGX = null;
+        if (observableListGx.size() <= 0)
+            observableListGx = null;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Записуємо порожній рядок замість "No content in table":
-        tableFX.setPlaceholder(new Label(""));
-        tableGX.setPlaceholder(new Label(""));
+        tableFx.setPlaceholder(new Label(""));
+        tableGx.setPlaceholder(new Label(""));
     }
 
-    private void FXupdateX(TableColumn.CellEditEvent<PointData.ArrayFX.Point, Double> t) {
+    private void FxUpdateX(TableColumn.CellEditEvent<EquationData.FunctionFx.Point, Double> t) {
         t.getTableView().getItems().get(t.getTablePosition().getRow()).setX(t.getNewValue());
     }
 
-    private void FXupdateY(TableColumn.CellEditEvent<PointData.ArrayFX.Point, Double> t) {
+    private void FxUpdateY(TableColumn.CellEditEvent<EquationData.FunctionFx.Point, Double> t) {
         t.getTableView().getItems().get(t.getTablePosition().getRow()).setY(t.getNewValue());
     }
 
-    private void GXupdateX(TableColumn.CellEditEvent<PointData.ArrayGX.Point, Double> t) {
+    private void GxUpdateX(TableColumn.CellEditEvent<EquationData.FunctionGx.Point, Double> t) {
         t.getTableView().getItems().get(t.getTablePosition().getRow()).setX(t.getNewValue());
     }
 
-    private void GXupdateY(TableColumn.CellEditEvent<PointData.ArrayGX.Point, Double> t) {
+    private void GxUpdateY(TableColumn.CellEditEvent<EquationData.FunctionGx.Point, Double> t) {
         t.getTableView().getItems().get(t.getTablePosition().getRow()).setY(t.getNewValue());
     }
 
-    private void XMLupdateTableFX() {
-        List<PointData.ArrayFX.Point> list = new ArrayList<>();
-        observableListFX = FXCollections.observableList(list);
-        for (int i = 0; i < xml.getSizeFX(); i++) {
-            list.add(xml.getPointFX_index(i));
+    private void XMLupdateTableFx() {
+        List<EquationData.FunctionFx.Point> list = new ArrayList<>();
+        observableListFx = FXCollections.observableList(list);
+        for (int i = 0; i < xml.getSizeFx(); i++) {
+            list.add(xml.getPointFx_index(i));
         }
-        tableFX.setItems(observableListFX);
+        tableFx.setItems(observableListFx);
 
-        FXColumnX.setCellValueFactory(new PropertyValueFactory<>("X"));
-        FXColumnX.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        FXColumnX.setOnEditCommit(t -> FXupdateX(t));
+        FxColumnX.setCellValueFactory(new PropertyValueFactory<>("X"));
+        FxColumnX.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        FxColumnX.setOnEditCommit(t -> FxUpdateX(t));
 
-        FXColumnY.setCellValueFactory(new PropertyValueFactory<>("Y"));
-        FXColumnY.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        FXColumnY.setOnEditCommit(t -> FXupdateY(t));
+        FxColumnY.setCellValueFactory(new PropertyValueFactory<>("Y"));
+        FxColumnY.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        FxColumnY.setOnEditCommit(t -> FxUpdateY(t));
     }
 
-    private void XMLupdateTableGX() {
-        List<PointData.ArrayGX.Point> list = new ArrayList<>();
-        observableListGX = FXCollections.observableList(list);
-        for (int i = 0; i < xml.getSizeGX(); i++) {
-            list.add(xml.getPointGX_index(i));
+    private void XMLupdateTableGx() {
+        List<EquationData.FunctionGx.Point> list = new ArrayList<>();
+        observableListGx = FXCollections.observableList(list);
+        for (int i = 0; i < xml.getSizeGx(); i++) {
+            list.add(xml.getPointGx_index(i));
         }
-        tableGX.setItems(observableListGX);
+        tableGx.setItems(observableListGx);
 
-        GXColumnX.setCellValueFactory(new PropertyValueFactory<>("X"));
-        GXColumnX.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        GXColumnX.setOnEditCommit(t -> GXupdateX(t));
+        GxColumnX.setCellValueFactory(new PropertyValueFactory<>("X"));
+        GxColumnX.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        GxColumnX.setOnEditCommit(t -> GxUpdateX(t));
 
-        GXColumnY.setCellValueFactory(new PropertyValueFactory<>("Y"));
-        GXColumnY.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        GXColumnY.setOnEditCommit(t -> GXupdateY(t));
+        GxColumnY.setCellValueFactory(new PropertyValueFactory<>("Y"));
+        GxColumnY.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        GxColumnY.setOnEditCommit(t -> GxUpdateY(t));
     }
 
     @FXML
     void doAbout(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("About program...");
-        alert.setHeaderText("Lagrange polynomial interpolation and search roots by tangential\n");
-        alert.setContentText("Course work\nAuthor: Kira Hovorukha");
+        alert.setTitle("Про програму...");
+        alert.setHeaderText("Прикладна програма графічного інтерфейсу користувача для чисельного знаходження коренів рівняння методом дихотомії\n");
+        alert.setContentText("Автор роботи: студентка групи КН-223б Говоруха Кіра");
         alert.showAndWait();
     }
 
     @FXML
     void doClear() {
         Chart.getData().clear();
-        a.clear();
-        b.clear();
-        eps.clear();
+        lowerBound.clear();
+        upperBound.clear();
+        tolerance.clear();
         xml.Clear();
         ROOT.clear();
-        if (observableListFX == null)
+        if (observableListFx == null)
             return;
         else
-            observableListFX.clear();
-        if (observableListGX == null)
+            observableListFx.clear();
+        if (observableListGx == null)
             return;
         else
-            observableListGX.clear();
+            observableListGx.clear();
     }
 
     @FXML
@@ -340,8 +340,8 @@ public class MainController implements Initializable {
     void doNew() throws JAXBException, FileNotFoundException {
         xml = new XML();
         doClear();
-        observableListFX = null;
-        observableListGX = null;
+        observableListFx = null;
+        observableListGx = null;
     }
 
     public static FileChooser getFileChooser(String title) {
@@ -358,7 +358,7 @@ public class MainController implements Initializable {
 
     public static void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
+        alert.setTitle("Помилка");
         alert.setHeaderText(message);
         alert.showAndWait();
     }
@@ -384,20 +384,20 @@ public class MainController implements Initializable {
                 doNew();
                 xml.readFromFile(file.getCanonicalPath());
                 // Заповнюємо текстові поля прочитаними даними:
-                a.setText(xml.getA() + "");
-                b.setText(xml.getB() + "");
-                eps.setText(xml.getEps() + "");
+                lowerBound.setText(xml.getLowerBound() + "");
+                upperBound.setText(xml.getUpperBound() + "");
+                tolerance.setText(xml.getTolerance() + "");
                 ROOT.setText("");
                 // Очищаємо та оновлюємо таблицю:
-                tableFX.setItems(null);
-                tableGX.setItems(null);
-                XMLupdateTableFX();
-                XMLupdateTableGX();
+                tableFx.setItems(null);
+                tableGx.setItems(null);
+                XMLupdateTableFx();
+                XMLupdateTableGx();
                 doBuild();
             } catch (IOException e) {
-                showError("File not found");
+                showError("Файл не знайдено");
             } catch (XML.FileReadException e) {
-                showError("The file format is incorrect");
+                showError("Некоректний формат файла");
             }
         }
     }
@@ -405,37 +405,42 @@ public class MainController implements Initializable {
     @FXML
     void doReport(ActionEvent event) throws IOException {
         try {
-            if (observableListGX.size() < 2 || observableListFX.size() < 2 || a.getText().isEmpty() || b.getText().isEmpty() || eps.getText().isEmpty())
+            if (observableListGx.size() < 2 || observableListFx.size() < 2 || lowerBound.getText().isEmpty() || upperBound.getText().isEmpty() || tolerance.getText().isEmpty())
                 throw new Exception();
+
+            double lower = Double.parseDouble(lowerBound.getText());
+            double upper = Double.parseDouble(upperBound.getText());
+            double tol = Double.parseDouble(tolerance.getText());
+
             WritableImage im = Chart.snapshot(new SnapshotParameters(), null);
-            File fileIm = new File("D:\\Курсова\\CourseWork_Java\\CourseWork\\out\\production\\CourseWork\\chart.png");
+            File fileIm = new File("D:\\JavaProjects\\CourseWork_Java\\CourseWorkGUI_KiraHovorukha\\out\\production\\CourseWork\\chart.png");
             ImageIO.write(SwingFXUtils.fromFXImage(im, null), "png", fileIm);
             FileChooser fileChooser = FileChooser("Save html-file");
             File file;
             if ((file = fileChooser.showSaveDialog(null)) != null) {
                 //updateSourceData(); // оновлюємо дані в моделі
-                xml.saveReport(file.getCanonicalPath());
+                xml.saveReport(file.getCanonicalPath(),lower, upper, tol);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("");
-                alert.setHeaderText("Report is generated!");
+                alert.setHeaderText("Звіт створено!");
                 alert.showAndWait();
                 Desktop.getDesktop().open(file.getCanonicalFile());
             }
         } catch (Exception e) {
-            showError("Incorrect data for report generation");
+            showError("Неправильні дані для створення звіту");
         }
     }
 
     private void updateSourceData() {
         // Переписуємо дані в модель з observableList
-        xml.setA(Double.parseDouble(a.getText()));
-        xml.setB(Double.parseDouble(b.getText()));
-        xml.setEps(Double.parseDouble(eps.getText()));
+        xml.setLowerBound(Double.parseDouble(lowerBound.getText()));
+        xml.setUpperBound(Double.parseDouble(upperBound.getText()));
+        xml.setTolerance(Double.parseDouble(tolerance.getText()));
         xml.Clear();
-        for (PointData.ArrayFX.Point c : observableListFX)
-            xml.addPFX(c.getX(), c.getY());
-        for (PointData.ArrayGX.Point c : observableListGX)
-            xml.addPGX(c.getX(), c.getY());
+        for (EquationData.FunctionFx.Point c : observableListFx)
+            xml.addPFx(c.getX(), c.getY());
+        for (EquationData.FunctionGx.Point c : observableListGx)
+            xml.addPGx(c.getX(), c.getY());
     }
 
     @FXML
@@ -448,10 +453,10 @@ public class MainController implements Initializable {
                 xml.writeToFile(file.getCanonicalPath());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("");
-                alert.setHeaderText("Results saved successfully");
+                alert.setHeaderText("Результати успішно збережені!");
                 alert.showAndWait();
             } catch (Exception e) {
-                showError("Error writing to file");
+                showError("Помилка під час запису до файла");
             }
         }
     }

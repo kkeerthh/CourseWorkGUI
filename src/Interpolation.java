@@ -1,9 +1,9 @@
-import data.PointData;
+import pointdata.EquationData;
 
 import java.util.List;
 
-public class Polinom {
-    public static double LPfx(double x, List<PointData.ArrayFX.Point> point) {
+public class Interpolation {
+    public static double LagrangePolynomialFx(double x, List<EquationData.FunctionFx.Point> point) {
         double sum = 0;
         for (int i = 0; i < point.size(); i++) {
             double mul = 1;
@@ -15,7 +15,7 @@ public class Polinom {
         return sum;
     }
 
-    public static double LPgx(double x, List<PointData.ArrayGX.Point> point) {
+    public static double LagrangePolynomialGx(double x, List<EquationData.FunctionGx.Point> point) {
         double sum = 0;
         for (int i = 0; i < point.size(); i++) {
             double mul = 1;
@@ -27,8 +27,8 @@ public class Polinom {
         return sum;
     }
 
-    public static double f(double x, List<PointData.ArrayFX.Point> point1, List<PointData.ArrayGX.Point> point2) {
-        return LPfx(x, point1) - LPgx(x, point2);
+    public static double interpolatedDifference(double x, List<EquationData.FunctionFx.Point> point1, List<EquationData.FunctionGx.Point> point2) {
+        return LagrangePolynomialFx(x, point1) - LagrangePolynomialGx(x, point2);
     }
 }
 

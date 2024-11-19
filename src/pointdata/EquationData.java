@@ -1,4 +1,4 @@
-package data;
+package pointdata;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
@@ -6,65 +6,65 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "arrayFX",
-        "arrayGX"
+        "FunctionFx",
+        "FunctionGx"
 })
-@XmlRootElement(name = "PointData")
-public class PointData {
+@XmlRootElement(name = "EquationData")
+public class EquationData {
 
     @XmlElement(required = true)
-    protected PointData.ArrayFX arrayFX;
+    protected EquationData.FunctionFx FunctionFx;
     @XmlElement(required = true)
-    protected PointData.ArrayGX arrayGX;
-    @XmlAttribute(name = "Eps", required = true)
-    protected double eps;
-    @XmlAttribute(name = "a", required = true)
-    protected double a;
-    @XmlAttribute(name = "b", required = true)
-    protected double b;
-    public PointData.ArrayFX getArrayFX() {
-        return arrayFX;
+    protected EquationData.FunctionGx FunctionGx;
+    @XmlAttribute(name = "Tolerance", required = true)
+    protected double tolerance;
+    @XmlAttribute(name = "LowerBound", required = true)
+    protected double lowerBound;
+    @XmlAttribute(name = "UpperBound", required = true)
+    protected double upperBound;
+    public EquationData.FunctionFx getFunctionFx() {
+        return FunctionFx;
     }
-    public void setArrayFX(PointData.ArrayFX value) {
-        this.arrayFX = value;
+    public void setFunctionFx(EquationData.FunctionFx value) {
+        this.FunctionFx = value;
     }
-    public PointData.ArrayGX getArrayGX() {
-        return arrayGX;
+    public EquationData.FunctionGx getFunctionGx() {
+        return FunctionGx;
     }
-    public void setArrayGX(PointData.ArrayGX value) {
-        this.arrayGX = value;
+    public void setFunctionGx(EquationData.FunctionGx value) {
+        this.FunctionGx = value;
     }
-    public double getEps() {
-        return eps;
+    public double getTolerance() {
+        return tolerance;
     }
-    public void setEps(double value) {
-        this.eps = value;
+    public void setTolerance(double value) {
+        this.tolerance = value;
     }
-    public double getA() {
-        return a;
+    public double getLowerBound() {
+        return lowerBound;
     }
-    public void setA(double value) {
-        this.a = value;
+    public void setLowerBound(double value) {
+        this.lowerBound = value;
     }
-    public double getB() {
-        return b;
+    public double getUpperBound() {
+        return upperBound;
     }
-    public void setB(double value) {
-        this.b = value;
+    public void setUpperBound(double value) {
+        this.upperBound = value;
     }
 
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
             "point"
     })
-    public static class ArrayFX {
+    public static class FunctionFx {
 
         @XmlElement(name = "Point", required = true)
-        protected List<PointData.ArrayFX.Point> point;
+        protected List<EquationData.FunctionFx.Point> point;
 
-        public List<PointData.ArrayFX.Point> getPoint() {
+        public List<EquationData.FunctionFx.Point> getPoint() {
             if (point == null) {
-                point = new ArrayList<PointData.ArrayFX.Point>();
+                point = new ArrayList<EquationData.FunctionFx.Point>();
             }
             return this.point;
         }
@@ -99,14 +99,14 @@ public class PointData {
     @XmlType(name = "", propOrder = {
             "point"
     })
-    public static class ArrayGX {
+    public static class FunctionGx {
 
         @XmlElement(name = "Point", required = true)
-        protected List<PointData.ArrayGX.Point> point;
+        protected List<EquationData.FunctionGx.Point> point;
 
-        public List<PointData.ArrayGX.Point> getPoint() {
+        public List<EquationData.FunctionGx.Point> getPoint() {
             if (point == null) {
-                point = new ArrayList<PointData.ArrayGX.Point>();
+                point = new ArrayList<EquationData.FunctionGx.Point>();
             }
             return this.point;
         }

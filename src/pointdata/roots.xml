@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<PointData Eps="1.0E-9" a="-8.0" b="5.0">
-    <arrayFX>
+<EquationData Tolerance="0.000001" LowerBound="-5.0" UpperBound="5.0">
+    <FunctionFx>
         <Point x="2.0" y="3.0"/>
         <Point x="4.0" y="1.0"/>
         <Point x="0.0" y="0.0"/>
-    </arrayFX>
-    <arrayGX>
+    </FunctionFx>
+    <FunctionGx>
         <Point x="-3.0" y="2.0"/>
         <Point x="1.0" y="-3.0"/>
         <Point x="4.0" y="5.0"/>
-        <Point x="0.0" y="0.0"/>
-    </arrayGX>
-</PointData>
+    </FunctionGx>
+</EquationData>

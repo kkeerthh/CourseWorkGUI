@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="663.0" prefWidth="806.0" style="-fx-background-color: #fff0f5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+    <children>
+        <MenuBar layoutY="-1.0" prefHeight="25.0" prefWidth="806.0" style="-fx-background-color: #FFB6C1;">
+            <menus>
+                <Menu mnemonicParsing="false" text="Файл">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#doNew" text="Новий файл" />
+                        <MenuItem mnemonicParsing="false" onAction="#doOpen" text="Відкрити" />
+                        <MenuItem mnemonicParsing="false" onAction="#doSave" text="Зберегти" />
+                        <MenuItem mnemonicParsing="false" onAction="#doClose" text="Закрити" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Редагувати">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#doClear" text="Очистити" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Звіт">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#doReport" text="Згенерувати звіт" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Допомога">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#doAbout" text="Про програму" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+
+        <LineChart fx:id="Chart" layoutX="20.0" layoutY="34.0" prefHeight="502.0" prefWidth="582.0" snapToPixel="false" style="-fx-background-color: #ffe4e1;">
+            <xAxis>
+                <NumberAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+
+        <TableView fx:id="tableFx" editable="true" layoutX="630.0" layoutY="52.0" prefHeight="142.0" prefWidth="151.0" style="-fx-background-color: #FADADD;">
+            <columns>
+                <TableColumn fx:id="FxColumnX" prefWidth="75.0" text="X" />
+                <TableColumn fx:id="FxColumnY" prefWidth="75.0" text="Y" />
+            </columns>
+        </TableView>
+
+        <TableView fx:id="tableGx" editable="true" layoutX="630.0" layoutY="246.0" prefHeight="140.0" prefWidth="152.0" style="-fx-background-color: #FADADD;">
+            <columns>
+                <TableColumn fx:id="GxColumnX" prefWidth="75.0" text="X" />
+                <TableColumn fx:id="GxColumnY" prefWidth="75.0" text="Y" />
+            </columns>
+        </TableView>
+
+        <Label layoutX="630.0" layoutY="35.0" text="Функція f(x)" textFill="#D16D86" />
+        <Label layoutX="630.0" layoutY="229.0" text="Функція g(x)" textFill="#D16D86" />
+
+        <Button layoutX="632.0" layoutY="198.0" mnemonicParsing="false" onAction="#doAddFx" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #FFB6C1;" text="Додати" />
+        <Button layoutX="708.0" layoutY="198.0" mnemonicParsing="false" onAction="#doRemoveFx" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFB6C1;" text="Видалити" />
+        <Button layoutX="632.0" layoutY="389.0" mnemonicParsing="false" onAction="#doAddGx" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #FFB6C1;" text="Додати" />
+        <Button layoutX="708.0" layoutY="389.0" mnemonicParsing="false" onAction="#doRemoveGx" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFB6C1;" text="Видалити" />
+
+        <TextField fx:id="tolerance" layoutX="630.0" layoutY="441.0" style="-fx-background-color: #F0E0E6;" />
+        <TextField fx:id="lowerBound" layoutX="636.0" layoutY="483.0" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #F0E0E6;" />
+        <TextField fx:id="upperBound" layoutX="715.0" layoutY="483.0" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #F0E0E6;" />
+
+        <Label layoutX="682.0" layoutY="424.0" text="Точність:" textFill="#D16D86" />
+        <Label layoutX="630.0" layoutY="466.0" text="Нижня межа:" textFill="#D16D86" />
+        <Label layoutX="709.0" layoutY="466.0" text="Верхня межа:" textFill="#D16D86" />
+
+        <Button layoutX="620.0" layoutY="520.0" mnemonicParsing="false" onAction="#doBuild" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FFB6C1;" text="Побудувати графік" />
+
+        <TextArea fx:id="ROOT" editable="false" layoutX="150.0" layoutY="568.0" prefHeight="69.0" prefWidth="500.0" style="-fx-background-color: #FFB6C1;" />
+
+        <Label layoutX="150.0" layoutY="551.0" text="f(x)=g(x)" textFill="#8B008B" textAlignment="CENTER" prefWidth="500.0" />
+    </children>
+</AnchorPane>

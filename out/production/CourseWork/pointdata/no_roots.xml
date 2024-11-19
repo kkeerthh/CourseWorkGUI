@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EquationData Tolerance="0.000001" LowerBound="-2.0" UpperBound="2.0">
+    <FunctionFx>
+        <Point x="-3.0" y="1.0"/>
+        <Point x="2.0" y="3.0"/>
+        <Point x="1.0" y="7.0"/>
+    </FunctionFx>
+    <FunctionGx>
+        <Point x="-4.0" y="2.0"/>
+        <Point x="-2.0" y="3.0"/>
+        <Point x="0.0" y="0.0"/>
+        <Point x="2.0" y="-3.0"/>
+        <Point x="4.0" y="-2.0"/>
+    </FunctionGx>
+</EquationData>
