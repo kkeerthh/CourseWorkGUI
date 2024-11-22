@@ -6,15 +6,13 @@ public class Dichotomy {
     private static double rootX, rootY, intervalStart, intervalEnd;
     private static List<EquationData.FunctionGx.Point> point;
 
-
-    public static double getX() {
+    /*public static double getX() {
         return rootX;
     }
 
     public static double getY() {
         return rootY;
-    }
-
+    }*/
 
     public static String dichotomyMethod(double lowerBound, double upperBound, double tolerance, List<EquationData.FunctionFx.Point> point1, List<EquationData.FunctionGx.Point> point2) {
         intervalStart = lowerBound;

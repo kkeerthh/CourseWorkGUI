@@ -40,11 +40,6 @@
                         <MenuItem mnemonicParsing="false" onAction="#doReport" text="Згенерувати звіт" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Допомога">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#doAbout" text="Про програму" />
-                    </items>
-                </Menu>
             </menus>
         </MenuBar>
 

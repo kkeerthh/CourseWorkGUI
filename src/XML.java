@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.List;
 
 public class XML {
-    private EquationData data = new EquationData();
+    private EquationData data;
 
     @SuppressWarnings("serial")
     public static class FileException extends Exception {
@@ -40,7 +40,7 @@ public class XML {
     public XML() throws JAXBException, FileNotFoundException {
         JAXBContext jaxbContext = JAXBContext.newInstance("pointdata");
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        data = (EquationData) unmarshaller.unmarshal(new FileInputStream("D:\\JavaProjects\\CourseWork_Java\\CourseWorkGUI_KiraHovorukha\\src\\pointdata\\infinite_roots.xml"));
+        data = (EquationData) unmarshaller.unmarshal(new FileInputStream("D:\\JavaProjects\\CourseWork_Java\\CourseWorkGUI_KiraHovorukha\\src\\pointdata\\roots.xml"));
 
     }
 
@@ -191,7 +191,6 @@ public class XML {
             out.printf("<h2>Результат</h2>%n");
             out.printf("<tr>%n");
             out.printf("<td style=\"width: 100%%;\">%n");
-            //out.printf("<p> <img src=\"D:\\Курсова\\CourseWork_Java\\CourseWork\\out\\production\\CourseWork\\chart.png\"></p>%n");
             out.printf("<p> <img src=\"D:\\JavaProjects\\CourseWork_Java\\CourseWorkGUI_KiraHovorukha\\out\\production\\CourseWork\\chart.png\"></p>%n");
 
             for (int i = 0; i < MainController.ll.size(); i++)

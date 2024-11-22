@@ -6,35 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="43479579-382f-4247-8a17-9fcf577d9934" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graphic.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graphic1.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rep.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infinity.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/no roots.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/one.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/Dotichiy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CourseWork/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FunctionPlotter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionPlotter.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/Dichotomy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CourseWork/Dichotomy.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CourseWork/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CourseWork/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/Polinom.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CourseWork/XML.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CourseWork/XML.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/data/ObjectFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/data/PointData$ArrayFX$Point.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/data/PointData$ArrayFX.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/data/PointData$ArrayGX$Point.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/data/PointData$ArrayGX.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/data/PointData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/data/one.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/data/one.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dotichiy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/chart.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CourseWork/chart.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CourseWork/pointdata/one.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dichotomy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dichotomy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Polinom.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/XML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/ObjectFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/PointData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/one.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/one.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/two.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pointdata/one.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731794369695</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="second commit">
+      <option name="closed" value="true" />
+      <created>1732035137292</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732035137292</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -295,7 +284,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="second commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="second commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -200,8 +200,8 @@ public class MainController implements Initializable {
                     }
                 }
                 if (ROOT.getText().isEmpty()) {
-                    ROOT.setText("У цьому інтервалі немає коренів!");
-                    ll.add("У цьому інтервалі немає коренів!");
+                    ROOT.setText("На цьому інтервалі немає коренів!");
+                    ll.add("На цьому інтервалі немає коренів!");
                 }
             }
         } catch (ArithmeticException e) {
@@ -302,15 +302,6 @@ public class MainController implements Initializable {
         GxColumnY.setCellValueFactory(new PropertyValueFactory<>("Y"));
         GxColumnY.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         GxColumnY.setOnEditCommit(t -> GxUpdateY(t));
-    }
-
-    @FXML
-    void doAbout(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Про програму...");
-        alert.setHeaderText("Прикладна програма графічного інтерфейсу користувача для чисельного знаходження коренів рівняння методом дихотомії\n");
-        alert.setContentText("Автор роботи: студентка групи КН-223б Говоруха Кіра");
-        alert.showAndWait();
     }
 
     @FXML
