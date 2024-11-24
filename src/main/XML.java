@@ -1,4 +1,6 @@
-import pointdata.EquationData;
+package main;
+
+import gui.MainController;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -10,6 +12,7 @@ import java.util.List;
 public class XML {
     private EquationData data;
 
+    // Визначення кастомних винятків для роботи з файлами
     @SuppressWarnings("serial")
     public static class FileException extends Exception {
         private String fileName;
@@ -37,14 +40,16 @@ public class XML {
         }
     }
 
+    // Конструктор для ініціалізації XML даних з файлу
     public XML() throws JAXBException, FileNotFoundException {
         JAXBContext jaxbContext = JAXBContext.newInstance("pointdata");
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        data = (EquationData) unmarshaller.unmarshal(new FileInputStream("D:\\JavaProjects\\CourseWork_Java\\CourseWorkGUI_KiraHovorukha\\src\\pointdata\\roots.xml"));
+        // Читання даних з XML файлу
+        data = (EquationData) unmarshaller.unmarshal(new FileInputStream("D:\\JavaProjects\\CourseWork_Java\\CourseWork_KiraHovorukha\\src\\pointdata\\roots.xml"));
 
     }
 
-
+    // Методи для отримання розміру функцій f(x) і g(x)
     public int getSizeFx() {
         return data.getFunctionFx().getPoint().size();
     }
@@ -209,6 +214,48 @@ public class XML {
         }
     }
 
+    // Генерація HTML-звіту
+    public XML saveReportConsole(String fileName, double LowerBound, double UpperBound, double Tolerance,
+                          List<EquationData.FunctionFx.Point> fxPoints,
+                          List<EquationData.FunctionGx.Point> gxPoints) throws FileWriteException {
+        try (PrintWriter out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"))) {
+            out.printf("<h1 style=\"text-align: center;\">Звіт</h1>%n");
+            out.printf("<p style=\"text-align: center;\">Чисельне знаходження коренів рівняння методом дихотомії</p>%n");
+
+            // Виведення параметрів LowerBound, UpperBound, Tolerance
+            out.printf("<h2>Параметри</h2>%n");
+            out.printf("<p>Нижня межа: %8.2f</p>%n", LowerBound);
+            out.printf("<p>Верхня межа: %8.2f</p>%n", UpperBound);
+            out.printf("<p>Точність: %8.9f</p>%n", Tolerance);
+
+            // Таблиця точок f(x)
+            out.printf("<p>f(x)</p>%n");
+            out.printf("<table border=\"1\" style=\"border-collapse: collapse;\"><caption>X&nbsp; Y</caption>%n");
+            out.printf("<tbody>%n");
+            for (int i = 0; i < getSizeFx(); i++) {
+                out.printf("<tr><td>%8.1f</td><td>%8.1f</td></tr>%n", getPointFx_index(i).getX(), getPointFx_index(i).getY());
+            }
+            out.printf("</tbody>%n</table>%n");
+
+            // Таблиця точок g(x)
+            out.printf("<p>g(x)</p>%n");
+            out.printf("<table border=\"1\" style=\"border-collapse: collapse;\"><caption>X&nbsp; Y</caption>%n");
+            out.printf("<tbody>%n");
+            for (int i = 0; i < getSizeGx(); i++) {
+                out.printf("<tr><td>%8.1f</td><td>%8.1f</td></tr>%n", getPointGx_index(i).getX(), getPointGx_index(i).getY());
+            }
+            out.printf("</tbody>%n</table>%n");
+
+            // Результати знаходження коренів
+            out.printf("<h2>Результат</h2>%n");
+            String rootResults = Dichotomy.findRoots(LowerBound, UpperBound, Tolerance, fxPoints, gxPoints);
+            out.printf("<p>%s</p>%n", rootResults.replace("\n", "<br>"));
+
+            return this;
+        } catch (IOException e) {
+            throw new FileWriteException(fileName); // Генерація винятку при помилці
+        }
+    }
     private List<String> getTextArea(List<String> s) {
         return s;
     }

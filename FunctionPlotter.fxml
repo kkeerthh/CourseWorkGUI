@@ -18,7 +18,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="663.0" prefWidth="806.0" style="-fx-background-color: #fff0f5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<AnchorPane prefHeight="663.0" prefWidth="806.0" style="-fx-background-color: #fff0f5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainController">
     <children>
         <MenuBar layoutY="-1.0" prefHeight="25.0" prefWidth="806.0" style="-fx-background-color: #FFB6C1;">
             <menus>

@@ -1,3 +1,8 @@
+package gui;
+
+import main.Dichotomy;
+import main.Interpolation;
+import main.XML;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +22,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 import javafx.util.converter.DoubleStringConverter;
-import pointdata.EquationData;
+import main.EquationData;
 
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXBException;
@@ -340,7 +345,7 @@ public class MainController implements Initializable {
         // Починаємо шукати з поточної теки:
         fileChooser.setInitialDirectory(new File("."));
         // Встановлюємо фільтри для пошуку файлів:
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML-files (*.xml)", "*.xml"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("findroots.XML-files (*.xml)", "*.xml"));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All files (*.*)", "*.*"));
         // Вказуємо заголовк вікна:
         fileChooser.setTitle(title);
@@ -368,7 +373,7 @@ public class MainController implements Initializable {
 
     @FXML
     void doOpen(ActionEvent event) throws JAXBException {
-        FileChooser fileChooser = getFileChooser("Open XML-file");
+        FileChooser fileChooser = getFileChooser("Open findroots.XML-file");
         File file;
         if ((file = fileChooser.showOpenDialog(null)) != null) {
             try {
@@ -403,6 +408,7 @@ public class MainController implements Initializable {
             double upper = Double.parseDouble(upperBound.getText());
             double tol = Double.parseDouble(tolerance.getText());
 
+
             WritableImage im = Chart.snapshot(new SnapshotParameters(), null);
             File fileIm = new File("D:\\JavaProjects\\CourseWork_Java\\CourseWorkGUI_KiraHovorukha\\out\\production\\CourseWork\\chart.png");
             ImageIO.write(SwingFXUtils.fromFXImage(im, null), "png", fileIm);
@@ -436,7 +442,7 @@ public class MainController implements Initializable {
 
     @FXML
     void doSave(ActionEvent event) {
-        FileChooser fileChooser = getFileChooser("Save XML-file");
+        FileChooser fileChooser = getFileChooser("Save findroots.XML-file");
         File file;
         if ((file = fileChooser.showSaveDialog(null)) != null) {
             try {

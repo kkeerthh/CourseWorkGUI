@@ -1,3 +1,5 @@
+package gui;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            AnchorPane root = new FXMLLoader().load(new FileInputStream("D:\\JavaProjects\\CourseWork_Java\\CourseWorkGUI_KiraHovorukha\\FunctionPlotter.fxml"));
+            AnchorPane root = new FXMLLoader().load(new FileInputStream("D:\\JavaProjects\\CourseWork_Java\\CourseWork_KiraHovorukha\\FunctionPlotter.fxml"));
             Scene scene = new Scene(root, 800, 655);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Курсова робота");
