@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15" version="28.2.7" pages="6">
   <diagram name="Сторінка-1" id="BBnAmSPmK_hMSSCM9j-e">
-    <mxGraphModel dx="630" dy="853" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="901" dy="599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -26,7 +26,7 @@
           <mxGeometry x="430" y="340" width="150" height="40" as="geometry" />
         </mxCell>
         <mxCell id="ZFf6XiWt7frZkoEreDVW-9" value="Генерація звіту" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="400" y="420" width="140" height="40" as="geometry" />
+          <mxGeometry x="414" y="420" width="140" height="40" as="geometry" />
         </mxCell>
         <mxCell id="ZFf6XiWt7frZkoEreDVW-17" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="ZFf6XiWt7frZkoEreDVW-1" target="ZFf6XiWt7frZkoEreDVW-3" edge="1">
           <mxGeometry relative="1" as="geometry">
